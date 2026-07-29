@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f7fb">
+  <title>今日日程 · 每日计划</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="今日日程首页"><span class="brand-mark">今</span><span><strong>今日日程</strong><small>把一天，过成自己喜欢的样子</small></span></a>
+      <div class="header-actions">
+        <span class="save-status" id="saveStatus"><i></i> 已自动保存</span>
+        <button class="icon-btn" id="dataButton" aria-label="数据管理" title="数据管理">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div><p class="eyebrow" id="weekdayLabel">星期五</p><h1 id="greeting">上午好，今天也要闪闪发光。</h1><p class="hero-subtitle" id="summaryLine">准备好开启充实的一天了吗？</p></div>
+        <div class="date-switcher" aria-label="日期选择">
+          <button class="date-arrow" id="prevDay" aria-label="前一天">‹</button>
+          <label class="date-display"><span id="dateText">7月24日</span><input type="date" id="datePicker" aria-label="选择日期"></label>
+          <button class="date-arrow" id="nextDay" aria-label="后一天">›</button>
+          <button class="today-btn" id="todayButton">回到今天</button>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="今日概览">
+        <article class="stat-card"><div class="stat-icon purple"><svg viewBox="0 0 24 24"><path d="m8 12 2.5 2.5L16 9m5 3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg></div><div><span>任务进度</span><strong id="taskStat">0 / 0</strong><div class="mini-progress"><i id="taskProgress"></i></div></div></article>
+        <article class="stat-card"><div class="stat-icon orange"><svg viewBox="0 0 24 24"><path d="m12 3 2.1 4.4L19 8.1l-3.5 3.4.8 4.8-4.3-2.2-4.3 2.2.8-4.8L5 8.1l4.9-.7L12 3Z"/></svg></div><div><span>目标达成</span><strong id="goalStat">0%</strong><div class="mini-progress orange-bar"><i id="goalProgress"></i></div></div></article>
+        <article class="stat-card"><div class="stat-icon green"><svg viewBox="0 0 24 24"><path d="M4 7h16v12H4zM16 11h4M7 7V5h10v2"/></svg></div><div><span>今日花费</span><strong id="expenseStat">¥0.00</strong><small id="expenseCount">还没有花费记录</small></div></article>
+      </section>
+
+      <section class="content-grid">
+        <div class="main-column">
+          <article class="panel" data-section="tasks">
+            <div class="panel-head"><div><span class="section-kicker purple-text">TODAY'S TASKS</span><h2>今日任务 <em id="taskBadge">0</em></h2></div><button class="add-btn purple-btn" data-open="task"><span>＋</span> 添加任务</button></div>
+            <div class="progress-copy"><span id="taskProgressText">尚未添加任务</span><strong id="taskPercent">0%</strong></div><div class="progress-track"><i id="taskTrack"></i></div>
+            <div class="item-list" id="taskList"></div>
+          </article>
+
+          <article class="panel" data-section="expenses">
+            <div class="panel-head"><div><span class="section-kicker green-text">DAILY EXPENSES</span><h2>今日花费</h2></div><button class="add-btn green-btn" data-open="expense"><span>＋</span> 记一笔</button></div>
+            <div class="expense-layout"><div class="expense-list" id="expenseList"></div><aside class="expense-summary"><span>今日总支出</span><strong id="expenseTotal">¥0.00</strong><div id="categorySummary"></div></aside></div>
+          </article>
+        </div>
+
+        <aside class="side-column">
+          <article class="panel goals-panel">
+            <div class="panel-head"><div><span class="section-kicker orange-text">DAILY GOALS</span><h2>今日目标 <em id="goalBadge">0</em></h2></div><button class="small-add" data-open="goal" aria-label="添加目标">＋</button></div>
+            <p class="panel-tip">写下最重要的事，让今天更有方向。</p><div class="item-list compact" id="goalList"></div>
+          </article>
+          <article class="panel memo-panel">
+            <div class="panel-head"><div><span class="section-kicker blue-text">MEMO</span><h2>备忘录</h2></div><svg class="memo-icon" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 9h8M8 13h6"/></svg></div>
+            <textarea id="memoInput" maxlength="3000" placeholder="记录灵感、想法，或任何不想忘记的事情……" aria-label="今日备忘录"></textarea><div class="memo-footer"><span id="memoStatus">输入内容将自动保存</span><span id="memoCount">0 / 3000</span></div>
+          </article>
+          <div class="quote-card"><svg viewBox="0 0 24 24"><path d="M7 17h4V9H5v5h2v3Zm10 0h4V9h-6v5h2v3Z"/></svg><p>不要等待机会，<br><strong>而要创造机会。</strong></p><span>— 今日寄语</span></div>
+        </aside>
+      </section>
+    </main>
+    <footer><span>所有数据仅保存在你的浏览器中</span><span>今日日程 · 专注每一个当下</span></footer>
+  </div>
+
+  <div class="modal-backdrop" id="entryModal" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" data-close aria-label="关闭">×</button><span class="section-kicker" id="modalKicker">NEW TASK</span><h2 id="modalTitle">添加任务</h2><form id="entryForm"><input type="hidden" id="entryType"><input type="hidden" id="entryId"><label id="titleField">任务内容<input id="entryTitle" maxlength="120" autocomplete="off" placeholder="例如：完成项目周报"></label><div id="expenseFields" hidden><label>金额（元）<input id="expenseAmount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00"></label><label>分类<select id="expenseCategory"><option>餐饮</option><option>交通</option><option>购物</option><option>娱乐</option><option>学习</option><option>医疗</option><option>居住</option><option>其他</option></select></label></div><div class="form-actions"><button type="button" class="secondary-btn" data-close>取消</button><button type="submit" class="primary-btn" id="submitEntry">保存</button></div></form></div></div>
+
+  <div class="modal-backdrop" id="dataModal" hidden><div class="modal data-modal" role="dialog" aria-modal="true" aria-labelledby="dataTitle"><button class="modal-close" data-data-close aria-label="关闭">×</button><span class="section-kicker blue-text">DATA & BACKUP</span><h2 id="dataTitle">数据管理</h2><p class="modal-note">你的数据只保存在当前浏览器。建议定期导出备份文件。</p><div class="data-actions"><button id="exportButton"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 19h14"/></svg><span><strong>导出备份</strong><small>保存全部日期数据</small></span></button><button id="importButton"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0 4 4m-4-4L8 8M5 20h14"/></svg><span><strong>导入备份</strong><small>从 JSON 文件恢复</small></span></button><button id="clearButton" class="danger-action"><svg viewBox="0 0 24 24"><path d="M5 7h14M9 7V4h6v3m2 0-1 13H8L7 7"/></svg><span><strong>清空所有数据</strong><small>此操作无法撤销</small></span></button></div><input type="file" id="importFile" accept="application/json,.json" hidden></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
